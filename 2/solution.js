@@ -8,36 +8,27 @@ let solution = 0
 let safeAllValues = []
 
 
-console.log(rows.push[2])
 
 function readLines() {
-    return new Promise((resolve, reject) => {
-        lineReader.on('line', function (line) {
-            //console.log('Line from file:', line);
-            rows.push(line)
-            resolve(rows)
-        });
-    })
-
-
+    rows= fs.readFileSync('input', 'utf-8')
+        .split('\n')
 }
 
-readLines().then(function (res) {
-    for (let i = 0; i < res.length; i++) {
+readLines()
+    for (let i = 0; i < rows.length; i++) {
         let lineArray = []
-       lineArray = createArrayFromLine(res[i])
+       lineArray = createArrayFromLine(rows[i])
         let minMax = getMinAndMaxFromLine(lineArray)
         calcDifference(minMax)
     }
     displaySolution()
 
-})
+
 
 function createArrayFromLine(line) {
     let arrayFromLine = line.replace(/\t/g, ',').split(',')
     for (let i = 0; i < arrayFromLine.length; i++) {
         arrayFromLine[i] = parseInt(arrayFromLine[i])
-
     }
     console.log(arrayFromLine);
     return arrayFromLine
